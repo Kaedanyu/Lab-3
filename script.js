@@ -19,6 +19,7 @@ function openNewTab2() {
     const url = 'https://www.youtube.com/watch?v=RvW16nVVgjQ';
     window.open(url, '_blank');
 }
+// i dont understand why but whenever i touch the buttons the map just breaks
 
 // Add event listener to button element with function to open dialogue box with message
 button2.addEventListener("click", openNewTab);
@@ -35,21 +36,49 @@ const map = new mapboxgl.Map({
 
 map.on('load', () => {
 
-    map.addSource('rivers-data', { //add geoJSON from github repo
+    map.addSource('ncr-data', { //add geoJSON from github repo
         type: 'geojson',
-        data: 'https://kaedanyu.github.io/Lab-2/Lost_Rivers_20170705__last_edited.geojson' //URL to geojson file via github (update once published!)
+        data: 'https://raw.githubusercontent.com/kaedanyu/lab-3/main/neighbourhood-crime-rates.geojson' //URL to geojson file via github (update once published!)
     });
 
-
+    //adding choropleth symbology to data layer
     map.addLayer({
-        'id': 'rivers-data',
-        'type': 'line',
-        'source': 'rivers-data',
+        'id': 'ncr-data',
+        'type': 'fill',
+        'source': 'ncr-data',
         'paint': {
-            'line-color': '#B4D2FF',
-            'line-width': 2
+            'fill-color': [
+                'step', // STEP expression produces stepped results based on value pairs
+                ['get', 'ASSAULT_2025'], // GET expression retrieves property value from 'population' data field
+                '#fd8d3c', // Colour assigned to any values < first step
+                50, '#fc4e2a', // Colours assigned to values >= each step
+                100, '#e31a1c',
+                150, '#bd0026',
+                200, '#800026'
+            ],
+            'fill-opacity': 0.5,
+            'fill-outline-color': '#6D4C41'
         }
     });
 
 
 });
+
+//  Filter data layer to show selected CT data from dropdown selection
+let ASSAULT_2025value;
+
+document.getElementById("ASSAULT_2025").addEventListener('change', (e) => {
+    ASSAULT_2025value = document.getElementById('ASSAULT_2025').value;
+})
+
+// navigation
+map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new mapboxgl.FullscreenControl());
+
+const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    countries: "ca"
+});
+
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));

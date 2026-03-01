@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toronto's Lost Rivers</title>
+    <title>Crime in Toronto</title>
     <!--Mapbox CDN link-->
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css' rel='stylesheet' />
@@ -19,20 +19,17 @@
 
 <body>
     <!-- centered heading and body text -->
-    <!-- <div class="container-md text-center p-4">
+    <div class="container-md text-center p-4">
         <div class="row">
             <div class="col-md">
             </div>
-            <div class="col-md"> -->
+            <div class="col-md">
                 <!-- give text classes to edit in CSS -->
-                <!-- <h1 class="heading-text">Toronto's Lost Rivers</h1>
-                <p class="body-text">Due to urban development, a once sprawling drainage basin has been limited to
-                    designated rivers and ravines, as natural hydrological processes are now controlled by humans
-                    through reservoirs and sewer systems.</p>
+                <h1 class="heading-text">Crime in Toronto</h1>
             </div>
             <div class="col-md">
             </div>
-        </div> -->
+        </div>
 
         <div class="container-md text-center second-container">
             <div class="row">
@@ -42,10 +39,10 @@
                 </div>
 
                 <div class="col-md">
-                    <button type="button" class="btn btn-primary" id="btn1">Map Source</button>
+                    <button type="button" class="btn btn-primary" id="btn1"></button>
                 </div>
                 <div class="col-md">
-                    <button type="button" class="btn btn-primary" id="btn2">Learn More</button>
+                    <button type="button" class="btn btn-primary" id="btn2"></button>
                 </div>
                 <div class="col-md">
                 </div>
@@ -56,11 +53,47 @@
 
         </div>
 
-        <!-- bootstrap center map through flexport -->
-        <div class="d-flex justify-content-center">
-            <div id="my-map" class="map-container"></div>
-            <script src="script.js"></script>
+        <!-- LEGEND -->
+        <div id='popn-legend' class='legend'>
+            <h5>Assaults in 2025</h5>
+            <div><span></span>0-50</div>
+            <div><span></span>51-100</div>
+            <div><span></span>101-150</div>
+            <div><span></span>151-200</div>
+            <div><span></span>201+</div>
         </div>
+
+        <!-- layer -->
+        <div class='toggler'>
+
+            <!-- show individual layers from dropdown -->
+            <form>
+                <fieldset id="ASSAULT_2025fieldset">
+                    <label class="option-label">Sort By Data Layer</label>
+                    <select id="ASSAULT_2025" name="ASSAULT_2025">
+                        <option value="" disabled selected>Select Data Layer...</option>
+                        <option value="126">0-50</option>
+                        <!-- testing this value to see if it works -->
+                        <option value="['>=',51]">51-100</option>
+                        <option value="['>=',101]">101-150</option>
+                        <option value="['>=',151]">151-200</option>
+                        <option value="['>=',201]">201+</option>
+                    </select>
+                </fieldset>
+            </form>
+            </div>
+
+
+            <!-- bootstrap center map through flexport -->
+            <div class="d-flex justify-content-center">
+                <div id="my-map" class="map-container"></div>
+                <script src="script.js"></script>
+            </div>
 </body>
 
 </html>
+
+<!-- I'm really sorry but I've just spent too much time on this lab and can't figure anything out. 
+ I understand the lectures and code demonstrations but I'm really struggling to apply it on my own.
+ I think it would be more beneficial for myself and my project partner if I put the effort into the project instead.
+ Next lab I will start from scratch and try again.  -->
