@@ -1,0 +1,48 @@
+.map-container {
+    border-style: solid;
+    border-color: rgb(92, 36, 16);
+    border-width: thick;
+    position: absolute;
+    top: 1;
+    bottom: 1;
+    width: 35%;
+    height: 50%;
+}
+
+/* adjusting positioning, size, and border of the map */
+
+.heading-text {
+    color: rgb(170, 146, 118);
+    font-style: bold;
+    font-weight: 700;
+}
+
+/* heading text styling */
+
+.body-text {
+    color: antiquewhite;
+}
+
+/* body text colour */
+
+/* make buttons closer to text than map */
+.second-container {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(167, 122, 71) !important;
+    border-color: rgb(167, 122, 71) !important;
+}
+
+.btn-primary:hover {
+    color: rgb(92, 36, 16) !important;
+    background-color: antiquewhite !important;
+    border-color: antiquewhite !important;
+}
+
+.body {
+    background-color: rgb(54, 51, 65);
+}
